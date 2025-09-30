@@ -27,9 +27,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div style={{ padding: "10px", backgroundColor: "#222", color: "#fff" }}>
-          LTU ID: 22586650
+        <div
+          style={{
+            padding: "1px 20px",
+            backgroundColor: "#222",
+            color: "#fff",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <span style={{ fontWeight: "bold", fontSize: "25px" }}>Cloud-Web</span>
+          <span>LTU ID: 22586650</span>
         </div>
+
         <Header />
         <main>{children}</main>
         <Footer />

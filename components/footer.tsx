@@ -1,17 +1,15 @@
-"use client";
-
 export default function Footer() {
-  const today = new Date();
-  const formattedDate = today.toLocaleDateString();
+  const date = new Date();
+  const formattedDate = date.toLocaleDateString();
 
   return (
     <footer
       style={{
         textAlign: "center",
-        padding: "15px",
-        backgroundColor: "#f4f4f4",
+        padding: "8px",
+        backgroundColor: "#ffffffff",
         borderTop: "1px solid #ccc",
-        marginTop: "40px",
+        marginTop: "20px",
         color: "black"
       }}
     >
