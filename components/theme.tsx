@@ -28,11 +28,11 @@ export default function ThemeToggle() {
         padding: "8px 12px",
         borderRadius: "8px",
         cursor: "pointer",
-        border: "1px solid #333",
+        border: "2px solid var(--foreground)",
         background: "transparent",
         fontSize: "14px",
-        color: theme === "light" ? "#000" : "#000" ,
-        transition: "color 0.3s ease",
+        color: "var(--foreground)",
+        transition: "color 0.5s ease, border 0.5s ease"
       }}
     >
       {theme === "light" ? "Light Mode" : "Dark Mode"}

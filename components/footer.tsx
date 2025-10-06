@@ -7,10 +7,11 @@ export default function Footer() {
       style={{
         textAlign: "center",
         padding: "8px",
-        backgroundColor: "#ffffffff",
-        borderTop: "1px solid #ccc",
+        background: "var(--background)",
+        color: "var(--foreground)",
+        borderTop: "1px solid var(--foreground)",
         marginTop: "20px",
-        color: "black"
+        transition: "background 0.5s ease, color 0.5s ease",
       }}
     >
       <p>

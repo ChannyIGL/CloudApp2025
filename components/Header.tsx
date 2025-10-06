@@ -9,14 +9,16 @@ export default function Header() {
 
   return (
     <header style={
-      { background: "#ffffffff", 
+      { background: "var(--background)", 
+      color: "var(--foreground)",
       padding: "10px 20px", 
       position: "relative",
       display: "flex",
       justifyContent: "space-between",
-      alignItems: "center"
+      alignItems: "center",
+      transition: "background 0.5s ease, color 0.5s ease"
       }}>
-      <button onClick={() => setOpen(!open)} style={{ fontSize: "20px", color: "black", transition: "transform 0.3s ease", transform: open ? "rotate(90deg)" : "rotate(0deg)",}}>
+      <button onClick={() => setOpen(!open)} style={{ fontSize: "20px", color: "var(--foreground)", transition: "transform 0.3s ease", transform: open ? "rotate(90deg)" : "rotate(0deg)",}}>
         ☰
       </button>
 
@@ -30,18 +32,19 @@ export default function Header() {
           top: "50px",
           left: open ? "0" : "-200px",
           width: "200px",
-          backgroundColor: "#ffffffff",
-          transition: "transform 0.3s ease",
+          background: "var(--background)",
+          color: "var(--foreground)",
+          transition: "transform 0.5s ease, background 0.5s ease, color 0.5s ease",
           transform: open ? "translateX(0)" : "translateX(-220px)",
           padding: "10px",
           border: "1px solid #ccc",
         }}>
-          <ul style={{ listStyle: "none", padding: 0, color: "black" }}>
-            <li><Link href="">Home</Link></li>
-            <li><Link href="">About</Link></li>
-            <li><Link href="">Escape Room</Link></li>
-            <li><Link href="">Coding Races</Link></li>
-            <li><Link href="">Court Room</Link></li>
+          <ul style={{ listStyle: "none", padding: 0, color: "var(--foreground)" }}>
+            <li><Link href="/" onClick={() => setOpen(false)}>Home</Link></li>
+            <li><Link href="/about" onClick={() => setOpen(false)}>About</Link></li>
+            <li><Link href="" onClick={() => setOpen(false)}>Escape Room</Link></li>
+            <li><Link href="" onClick={() => setOpen(false)}>Coding Races</Link></li>
+            <li><Link href="" onClick={() => setOpen(false)}>Court Room</Link></li>
           </ul>
         </nav>
       )}

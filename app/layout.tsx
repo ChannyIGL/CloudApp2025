@@ -30,14 +30,16 @@ export default function RootLayout({
         <div
           style={{
             padding: "1px 20px",
-            backgroundColor: "#222",
-            color: "#fff",
+            color: "var(--foreground)",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            transition: "background 0.5s ease, color 0.5s ease",
+            borderRadius: "0x",
+            borderBottom: "1px solid var(--foreground)"
           }}
         >
-          <span style={{ fontWeight: "bold", fontSize: "25px" }}>Cloud-Web</span>
+          <span style={{ fontWeight: "bold", fontSize: "25px"}}>Cloud-Web</span>
           <span>LTU ID: 22586650</span>
         </div>
 
