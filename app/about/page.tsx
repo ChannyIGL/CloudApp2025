@@ -65,8 +65,8 @@ export default function AboutPage() {
         }}
       >
         <iframe
-          src="https://www.youtube.com/embed/Zq5fmkH0T78"
-          title="Cloud-Web Demo"
+          src="https://www.youtube.com/embed/i6_47QEU8eE"
+          title="Cloud-web Assignment 1 Explanation"
           style={{
             position: "absolute",
             top: 0,
