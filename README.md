@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cloud-Web — Tabs & HTML Generator (Next.js)
 
-## Getting Started
+**Cloud-Web** is a small Next.js app built for an assignment that demonstrates a UI for creating tabbed content and generating a self-contained HTML+JS file (inline CSS only) that can be copied and opened as a standalone `hello.html`.
 
-First, run the development server:
+---
+
+## Features
+
+- Global layout with header/footer and hamburger navigation  
+- Dark / Light theme toggle (persists via `localStorage`)  
+- About page with embedded demo video and student info  
+- **Home** — Tabs Generator:
+  - Add / remove / rename up to **15 tabs**
+  - Edit content for each tab (simple textarea)
+  - All tab data persisted to `localStorage`
+  - Live **generated HTML + JS** (inline styles) that can be copied and run as a standalone file
+  - “Copy Code” button with user feedback
+
+---
+
+## Tech stack
+
+- Next.js (App Router) + React (TypeScript)
+- Plain CSS variables used for theming (no external CSS frameworks required)
+- No server — all client-side for the interactive parts
+
+---
+
+## Quick start (development)
 
 ```bash
+# install deps
+npm install
+
+# run dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# open http://localhost:3000

@@ -12,16 +12,19 @@ const STORAGE_KEY = "cloudweb_tabs_v1";
 const MAX_TABS = 15;
 
 export default function HomePage() {
-  const [tabs, setTabs] = useState<Tab[]>(() => {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return [{ id: cryptoRandomId(), title: "Tab 1", content: "This is Tab 1 content." }];
-      const parsed = JSON.parse(raw) as Tab[];
-      return parsed.length ? parsed : [{ id: cryptoRandomId(), title: "Tab 1", content: "This is Tab 1 content." }];
-    } catch {
-      return [{ id: cryptoRandomId(), title: "Tab 1", content: "This is Tab 1 content." }];
+  const [tabs, setTabs] = useState<Tab[]>([]);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      setTabs(JSON.parse(raw));
+    } else {
+      setTabs([{ id: cryptoRandomId(), title: "Tab 1", content: "This is Tab 1 content." }]);
     }
-  });
+    setMounted(true);
+  }, []);
+
 
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
