@@ -42,7 +42,7 @@ export default function Header() {
           <ul style={{ listStyle: "none", padding: 0, color: "var(--foreground)" }}>
             <li><Link href="/" onClick={() => setOpen(false)}>Home</Link></li>
             <li><Link href="/about" onClick={() => setOpen(false)}>About</Link></li>
-            <li><Link href="" onClick={() => setOpen(false)}>Escape Room</Link></li>
+            <li><Link href="/escape-room" onClick={() => setOpen(false)}>Escape Room</Link></li>
             <li><Link href="" onClick={() => setOpen(false)}>Coding Races</Link></li>
             <li><Link href="" onClick={() => setOpen(false)}>Court Room</Link></li>
           </ul>
