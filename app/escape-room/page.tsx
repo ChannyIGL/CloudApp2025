@@ -11,6 +11,45 @@ export default function EscapeRoomPage() {
     const [timeLeft, setTimeLeft] = useState(0);
     const [timerRunning, setTimerRunning] = useState(false);
     const [timeUp, setTimeUp] = useState(false);
+    const [history, setHistory] = useState<any[]>([]);
+
+    const fetchHistory = async () => {
+      try {
+        const res = await fetch("/api/escape-results");
+        const data = await res.json();
+        setHistory(data);
+      } catch (error) {
+        console.error("Failed to fetch escape history:", error);
+      }
+    };
+
+    useEffect(() => {
+      fetchHistory();
+    }, []);
+
+    const saveResult = async (status: "ESCAPED" | "FAILED") => {
+      try {
+        await fetch("/api/escape-results", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            timeRemaining: timeLeft,
+            itemsCollected: inventory,
+            notes: status,
+          }),
+        });
+
+        console.log("Escape result saved to database");
+
+        fetchHistory();
+
+      } catch (error) {
+        console.error("Failed to save escape result:", error);
+      }
+    };
+
 
     useEffect(() => {
     if (!timerRunning || timeLeft <= 0) return;
@@ -157,6 +196,42 @@ export default function EscapeRoomPage() {
         </div>
       </div>
 
+      {/* Escape History */}
+      <div style={{
+        padding: "12px 20px",
+        borderRadius: "12px",
+        background: "var(--background)",
+        border: "1px solid rgba(255,255,255,0.1)",
+        width: "100%",
+        maxWidth: "700px"
+      }}>
+        <strong>📜 Escape History:</strong>
+
+        {history.length === 0 ? (
+          <p style={{ marginTop: "8px", opacity: 0.7 }}>No escape attempts yet.</p>
+        ) : (
+          <div style={{ marginTop: "10px", display: "flex", flexDirection: "column", gap: "8px" }}>
+            {history.map((run, index) => (
+              <div
+                key={run.id}
+                style={{
+                  padding: "8px 12px",
+                  borderRadius: "8px",
+                  background: run.notes === "ESCAPED" ? "rgba(0,255,0,0.1)" : "rgba(255,0,0,0.1)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  fontSize: "14px"
+                }}
+              >
+                <strong>{index + 1}. {run.notes === "ESCAPED" ? "ESCAPED" : "FAILED"}</strong><br />
+                ⏱ Time Left: {run.timeRemaining}s<br />
+                🎒 Items: {run.itemsCollected.length === 0 ? "None" : run.itemsCollected.join(", ")}<br />
+                📅 {new Date(run.createdAt).toLocaleString()}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
       {/* Game Board */}
       <div style={{
         width: "100%",
@@ -252,7 +327,7 @@ export default function EscapeRoomPage() {
             {stage3Status === "error" && <Error>❌ Wrong, try again.</Error>}
           </StagePanel>
         )}
-
+        
         {/* Fail Screen */}
         {timeUp && (
         <div style={{
@@ -272,6 +347,7 @@ export default function EscapeRoomPage() {
             <button
             style={{ marginTop: "20px", padding: "10px 20px" }}
             onClick={() => {
+                saveResult("FAILED");
                 setStage(0);
                 setInventory([]);
                 setTimeUp(false);
@@ -322,6 +398,7 @@ export default function EscapeRoomPage() {
                 cursor: "pointer"
             }}
             onClick={() => {
+                saveResult("ESCAPED");
                 setStage(0);
                 setInventory([]);
                 setTimeLeft(0);
