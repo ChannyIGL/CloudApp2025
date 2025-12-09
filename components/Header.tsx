@@ -43,8 +43,8 @@ export default function Header() {
             <li><Link href="/" onClick={() => setOpen(false)}>Home</Link></li>
             <li><Link href="/about" onClick={() => setOpen(false)}>About</Link></li>
             <li><Link href="/escape-room" onClick={() => setOpen(false)}>Escape Room</Link></li>
+            <li><Link href="/escape-history" onClick={() => setOpen(false)}>Escape History</Link></li>
             <li><Link href="" onClick={() => setOpen(false)}>Coding Races</Link></li>
-            <li><Link href="" onClick={() => setOpen(false)}>Court Room</Link></li>
           </ul>
         </nav>
       )}
